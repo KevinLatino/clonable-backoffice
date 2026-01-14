@@ -18,7 +18,9 @@ import {
 } from "@/components/tw-blocks/handle-errors/handle";
 import { GetEscrowsFromIndexerResponse } from "@trustless-work/escrow/types";
 
-export function useUpdateEscrow({ onSuccess }: { onSuccess?: () => void } = {}) {
+export function useUpdateEscrow({
+  onSuccess,
+}: { onSuccess?: () => void } = {}) {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const { getMultiReleaseFormSchema } = useUpdateEscrowSchema();
@@ -237,7 +239,7 @@ export function useUpdateEscrow({ onSuccess }: { onSuccess?: () => void } = {}) 
         ...finalPayload.escrow,
         trustline: {
           name:
-            selectedEscrow.trustline?.name ||
+            selectedEscrow.trustline?.symbol ||
             (selectedEscrow.trustline?.address as string) ||
             "",
           address: finalPayload.escrow.trustline.address,

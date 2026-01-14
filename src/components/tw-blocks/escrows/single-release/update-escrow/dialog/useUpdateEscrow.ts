@@ -20,7 +20,9 @@ import {
   handleError,
 } from "@/components/tw-blocks/handle-errors/handle";
 
-export function useUpdateEscrow({ onSuccess }: { onSuccess?: () => void } = {}) {
+export function useUpdateEscrow({
+  onSuccess,
+}: { onSuccess?: () => void } = {}) {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const { getSingleReleaseFormSchema } = useUpdateEscrowSchema();
@@ -207,7 +209,7 @@ export function useUpdateEscrow({ onSuccess }: { onSuccess?: () => void } = {}) 
         ...finalPayload.escrow,
         trustline: {
           name:
-            selectedEscrow.trustline?.name ||
+            selectedEscrow.trustline?.symbol ||
             (selectedEscrow.trustline?.address as string) ||
             "",
           address: finalPayload.escrow.trustline.address,
