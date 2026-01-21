@@ -38,8 +38,14 @@ export const WalletProvider = ({ children }: { children: ReactNode }) => {
    * This ensures the wallet state persists across browser sessions
    */
   useEffect(() => {
-    const storedAddress = localStorage.getItem("walletAddress");
+    let storedAddress = localStorage.getItem("walletAddress");
     const storedName = localStorage.getItem("walletName");
+
+    // The autocomplete problem with "" in the addresses has been fixed.
+    if (storedAddress && storedAddress.startsWith('"') && storedAddress.endsWith('"')) {
+      storedAddress = storedAddress.slice(1, -1);
+      localStorage.setItem("walletAddress", storedAddress);
+    }
 
     // This effect initializes state from localStorage once on mount.
     // It is a controlled sync from an external store, so we allow setState here.
