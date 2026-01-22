@@ -27,7 +27,6 @@ export default function FundEscrowPage() {
 
   const { setSelectedEscrow, selectedEscrow } = useEscrowContext();
 
-  // Sync query data to context when it changes
   React.useEffect(() => {
     if (
       escrowData &&
@@ -37,17 +36,14 @@ export default function FundEscrowPage() {
     }
   }, [escrowData, selectedEscrow, setSelectedEscrow]);
 
-  // Use escrow from context primarily (it's the single source of truth)
   const currentEscrow = selectedEscrow;
   const isMultiRelease = currentEscrow?.type === "multi-release";
 
-  // Get balance data for funding status
   const { data: balanceData } = useGetMultipleEscrowBalancesQuery({
     addresses: currentEscrow?.contractId ? [currentEscrow.contractId] : [],
     enabled: !!currentEscrow?.contractId,
   });
 
-  // Calculate target amount for progress
   const targetAmount = React.useMemo(() => {
     if (!currentEscrow) return 0;
 
@@ -61,7 +57,6 @@ export default function FundEscrowPage() {
     return currentEscrow.amount || 0;
   }, [currentEscrow, isMultiRelease]);
 
-  // Check if fully funded
   const isFullyFunded = React.useMemo(() => {
     if (!balanceData || !currentEscrow || targetAmount === 0) return false;
     const currentBalance = Number(balanceData?.[0]?.balance ?? 0);
@@ -74,7 +69,6 @@ export default function FundEscrowPage() {
 
       <div className="container mx-auto px-4 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Sidebar */}
           <FundEscrowSidebar
             currentEscrow={currentEscrow}
             isFullyFunded={isFullyFunded}
@@ -97,7 +91,6 @@ export default function FundEscrowPage() {
             }}
           />
 
-          {/* Main Content Area */}
           <div className="lg:col-span-2">
             {currentEscrow ? (
               <FundEscrowMain

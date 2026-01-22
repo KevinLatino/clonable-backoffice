@@ -69,7 +69,6 @@ export function FundEscrowMain({
 
   return (
     <div className="space-y-6">
-      {/* Funding Progress Card */}
       <Card className="border-border/60 shadow-sm">
         <CardHeader className="pb-4 border-b border-border/40">
           <CardTitle className="text-base font-semibold flex items-center gap-2">
@@ -109,10 +108,9 @@ export function FundEscrowMain({
                   This escrow has reached its funding goal. The funds are now secured and ready for release according to the escrow terms.
                 </p>
 
-                {/* What happens next explainer */}
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-left" role="region" aria-labelledby="next-steps-heading">
                   <div className="flex items-start gap-2 mb-2">
-                    <Info className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                    <Info className="w-4 h-4 text-blue-600 mt-0.5 shrink-0" aria-hidden="true" />
                     <h4 id="next-steps-heading" className="text-sm font-semibold text-blue-800">
                       What happens next?
                     </h4>
@@ -139,7 +137,6 @@ export function FundEscrowMain({
         </CardContent>
       </Card>
 
-      {/* Milestones Breakdown */}
       {isMultiRelease && currentEscrow.milestones && (
         <Card className="border-border/60 shadow-sm">
           <CardHeader className="pb-4 border-b border-border/40">

@@ -91,7 +91,6 @@ export function FundEscrowSidebar({
         </Suspense>
       </div>
 
-      {/* Action Buttons */}
       <div className="space-y-2">
         <div className="grid grid-cols-2 gap-2">
           <Button
