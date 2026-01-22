@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
+import { AxiosError } from "axios";
 import {
-  ErrorResponse,
   handleError,
+  WalletError,
 } from "@/components/tw-blocks/handle-errors/handle";
 import { useGetEscrowFromIndexerByContractIds } from "@trustless-work/escrow/hooks";
 import { GetEscrowsFromIndexerResponse } from "@trustless-work/escrow/types";
@@ -34,7 +35,7 @@ export const useLoadEscrow = ({
     try {
       const data = (await getEscrowByContractIds({
         contractIds: payload.contractIds.map((item) => item.value),
-        validateOnChain: true,
+        validateOnChain: payload.validateOnChain,
       })) as unknown as GetEscrowsFromIndexerResponse[];
 
       const escrowData = data[0];
@@ -51,7 +52,7 @@ export const useLoadEscrow = ({
 
       onSuccess?.();
     } catch (error) {
-      toast.error(handleError(error as ErrorResponse).message);
+      toast.error(handleError(error as AxiosError | WalletError).message);
     } finally {
       setIsSubmitting(false);
       form.reset();
