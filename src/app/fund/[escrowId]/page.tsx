@@ -74,7 +74,7 @@ export default function FundEscrowPage() {
             isFullyFunded={isFullyFunded}
             onLoadModalOpen={() => setIsLoadModalOpen(true)}
             onShare={() => {
-              const url = window.location.href;
+              const url = `https://viewer.trustlesswork.com/${currentEscrow?.contractId}`;
               if (navigator.share) {
                 navigator.share({
                   title: "Fund Escrow",
@@ -86,7 +86,7 @@ export default function FundEscrowPage() {
               }
             }}
             onView={() => {
-              const url = `${window.location.origin}/escrows/${currentEscrow?.contractId}`;
+              const url = `https://viewer.trustlesswork.com/${currentEscrow?.contractId}`;
               window.open(url, "_blank");
             }}
           />
