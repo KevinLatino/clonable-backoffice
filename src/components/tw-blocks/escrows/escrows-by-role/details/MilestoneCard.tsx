@@ -184,14 +184,16 @@ const MilestoneCardComponent = ({
   return (
     <Card
       key={`milestone-${milestoneIndex}-${milestone.description}-${milestone.status}`}
-      className="hover:shadow-lg transition-all duration-200"
+      className="hover:shadow-lg transition-all duration-200 overflow-hidden"
     >
       <CardHeader className="pb-4">
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-base font-semibold text-foreground truncate">
+        <div className="flex items-center justify-between gap-2">
+          <CardTitle className="text-sm font-semibold text-foreground truncate flex-1 min-w-0">
             {milestone.description}
           </CardTitle>
-          {getMilestoneStatusBadge(milestone)}
+          <div className="flex-shrink-0">
+            {getMilestoneStatusBadge(milestone)}
+          </div>
         </div>
       </CardHeader>
 
@@ -216,7 +218,9 @@ const MilestoneCardComponent = ({
           </div>
         )}
 
-        {getActionButtons(milestone, milestoneIndex, userRolesInEscrow)}
+        <div className="flex flex-col gap-2">
+          {getActionButtons(milestone, milestoneIndex, userRolesInEscrow)}
+        </div>
 
         <Button
           size="sm"
