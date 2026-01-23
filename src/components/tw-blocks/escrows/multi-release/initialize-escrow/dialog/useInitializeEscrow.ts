@@ -36,6 +36,7 @@ export function useInitializeEscrow({ onSuccess }: { onSuccess?: () => void } = 
       platformFee: undefined,
       trustline: {
         address: "",
+        symbol: "",
       },
       roles: {
         approver: "",
@@ -82,6 +83,7 @@ export function useInitializeEscrow({ onSuccess }: { onSuccess?: () => void } = 
       platformFee: 5,
       trustline: {
         address: usdc?.value || "",
+        symbol: usdc?.label || "",
       },
       roles: {
         approver: walletAddress || "",
@@ -114,8 +116,9 @@ export function useInitializeEscrow({ onSuccess }: { onSuccess?: () => void } = 
       form.setValue(key as keyof z.infer<typeof formSchema>, value);
     });
 
-    // Explicitly set the trustline field
+    // Explicitly set the trustline fields
     form.setValue("trustline.address", usdc?.value || "");
+    form.setValue("trustline.symbol", usdc?.label || "");
   };
 
   const handleSubmit = form.handleSubmit(async (payload) => {
