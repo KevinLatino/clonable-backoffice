@@ -11,6 +11,8 @@ export { useWallet } from "./useWallet";
 // Wallet validation
 export { useWalletValidation } from "./useWalletValidation";
 export { WalletValidationGate } from "./WalletValidationGate";
+export { useAddUsdcTrustline } from "./useAddUsdcTrustline";
+export { addUsdcTrustline } from "./addUsdcTrustline";
 export type {
   WalletValidationStatus,
   WalletValidationResult,

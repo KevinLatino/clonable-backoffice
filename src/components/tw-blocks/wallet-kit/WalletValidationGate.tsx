@@ -3,9 +3,11 @@
 import * as React from "react";
 import { useWalletValidation } from "./useWalletValidation";
 import { useWallet } from "./useWallet";
+import { useAddUsdcTrustline } from "./useAddUsdcTrustline";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { AlertCircle, Loader2, RefreshCw, Wallet } from "lucide-react";
+import { AlertCircle, Loader2, Plus, RefreshCw, Wallet } from "lucide-react";
+import { toast } from "sonner";
 
 /**
  * Props for WalletValidationGate component
@@ -45,6 +47,16 @@ export const WalletValidationGate: React.FC<WalletValidationGateProps> = ({
 }) => {
   const validation = useWalletValidation();
   const { handleConnect } = useWallet();
+  const { addTrustline, isLoading: isAddingTrustline } = useAddUsdcTrustline();
+
+  const handleAddUsdcTrustline = React.useCallback(async () => {
+    try {
+      await addTrustline();
+      toast.success("USDC trustline added successfully");
+    } catch {
+      toast.error("Failed to add USDC trustline. Please try again.");
+    }
+  }, [addTrustline]);
 
   // Wallet is valid - render children
   if (validation.isValid) {
@@ -127,18 +139,18 @@ export const WalletValidationGate: React.FC<WalletValidationGateProps> = ({
               </Button>
             ) : validation.status === "missing_usdc" ? (
               <Button
-                asChild
+                onClick={handleAddUsdcTrustline}
                 size="sm"
                 variant="outline"
                 className="gap-2 cursor-pointer"
+                disabled={isAddingTrustline}
               >
-                <a
-                  href="https://laboratory.stellar.org/#?network=test"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {validation.action}
-                </a>
+                {isAddingTrustline ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Plus className="h-4 w-4" />
+                )}
+                {validation.action}
               </Button>
             ) : null}
           </div>
