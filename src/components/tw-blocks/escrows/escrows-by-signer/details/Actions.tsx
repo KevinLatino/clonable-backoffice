@@ -21,6 +21,7 @@ import { DisputeEscrowButton } from "../../single-release/dispute-escrow/button/
 import { ResolveDisputeDialog } from "../../single-release/resolve-dispute/dialog/ResolveDispute";
 import { ReleaseEscrowButton } from "../../single-release/release-escrow/button/ReleaseEscrow";
 import { WithdrawRemainingFundsDialog } from "../../multi-release/withdraw-remaining-funds/dialog/WithdrawRemainingFunds";
+import { WalletValidationGate } from "@/components/tw-blocks/wallet-kit/WalletValidationGate";
 
 interface ActionsProps {
   selectedEscrow: Escrow;
@@ -144,34 +145,36 @@ export const Actions = ({
   return (
     <div className="flex items-start justify-start flex-col gap-2 w-full">
       {/* You can add the buttons here, using the buttons from the blocks. These actions are conditional based on the escrow flags and the user roles. */}
-      {hasConditionalButtons && (
-        <div className="flex flex-col gap-2 w-full">
-          {/* UpdateEscrowDialog component should be rendered based on the escrow type. It means that if the selectedEscrow.type is "single-release", then the UpdateEscrowDialog (from the single-release block) component should be rendered. If the selectedEscrow.type is "multi-release", then the UpdateEscrowDialog (from the multi-release block) component should be rendered. */}
-          {shouldShowEditButton && selectedEscrow.type === "single-release" && (
-            <UpdateEscrowDialog />
-          )}
-          {shouldShowEditButton && selectedEscrow.type === "multi-release" && (
-            <UpdateMultiReleaseEscrowDialog />
-          )}
+      <WalletValidationGate>
+        {hasConditionalButtons && (
+          <div className="flex flex-col gap-2 w-full">
+            {/* UpdateEscrowDialog component should be rendered based on the escrow type. It means that if the selectedEscrow.type is "single-release", then the UpdateEscrowDialog (from the single-release block) component should be rendered. If the selectedEscrow.type is "multi-release", then the UpdateEscrowDialog (from the multi-release block) component should be rendered. */}
+            {shouldShowEditButton && selectedEscrow.type === "single-release" && (
+              <UpdateEscrowDialog />
+            )}
+            {shouldShowEditButton && selectedEscrow.type === "multi-release" && (
+              <UpdateMultiReleaseEscrowDialog />
+            )}
 
-          {/* Works only with single-release escrows */}
-          {/* Only appears if the escrow has balance */}
-          {shouldShowDisputeButton && <DisputeEscrowButton />}
+            {/* Works only with single-release escrows */}
+            {/* Only appears if the escrow has balance */}
+            {shouldShowDisputeButton && <DisputeEscrowButton />}
 
-          {/* Works only with single-release escrows */}
-          {/* Only appears if the escrow is disputed */}
-          {shouldShowResolveButton && <ResolveDisputeDialog />}
+            {/* Works only with single-release escrows */}
+            {/* Only appears if the escrow is disputed */}
+            {shouldShowResolveButton && <ResolveDisputeDialog />}
 
-          {/* Works only with single-release escrows */}
-          {/* Only appears if all the milestones are approved */}
-          {shouldShowReleaseFundsButton && <ReleaseEscrowButton />}
+            {/* Works only with single-release escrows */}
+            {/* Only appears if all the milestones are approved */}
+            {shouldShowReleaseFundsButton && <ReleaseEscrowButton />}
 
-          {/* Multi-release: Withdraw Remaining Funds */}
-          {shouldShowWithdrawRemaining && <WithdrawRemainingFundsDialog />}
-        </div>
-      )}
+            {/* Multi-release: Withdraw Remaining Funds */}
+            {shouldShowWithdrawRemaining && <WithdrawRemainingFundsDialog />}
+          </div>
+        )}
 
-      <FundEscrowDialog />
+        <FundEscrowDialog />
+      </WalletValidationGate>
     </div>
   );
 };

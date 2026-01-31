@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Share2, ExternalLink } from "lucide-react";
 import { GetEscrowsFromIndexerResponse } from "@trustless-work/escrow/types";
+import { WalletValidationGate } from "@/components/tw-blocks/wallet-kit/WalletValidationGate";
 
 const EscrowSummaryNoSSR = dynamic(
   () =>
@@ -127,7 +128,9 @@ export function FundEscrowSidebar({
         {!isFullyFunded && (
           <Suspense fallback={null}>
             <div className="w-full">
-              <FundEscrowDialogNoSSR />
+              <WalletValidationGate>
+                <FundEscrowDialogNoSSR />
+              </WalletValidationGate>
             </div>
           </Suspense>
         )}
