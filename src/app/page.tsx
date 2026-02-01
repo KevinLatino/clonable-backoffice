@@ -6,6 +6,7 @@ import { EscrowsByRoleCards } from "@/components/tw-blocks/escrows/escrows-by-ro
 import { InitializeEscrowDialog } from "@/components/tw-blocks/escrows/single-release/initialize-escrow/dialog/InitializeEscrow";
 import { InitializeEscrowDialog as InitializeMultiReleaseEscrowDialog } from "@/components/tw-blocks/escrows/multi-release/initialize-escrow/dialog/InitializeEscrow";
 import { WalletButton } from "@/components/tw-blocks/wallet-kit/WalletButtons";
+import { WalletValidationGate } from "@/components/tw-blocks/wallet-kit/WalletValidationGate";
 import Image from "next/image";
 
 const EscrowsBySignerCardsNoSSR = dynamic(
@@ -43,10 +44,12 @@ export default function Home() {
       </header>
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start w-full">
         <div className="flex w-full mb-4 justify-between items-center">
-          <div className="flex gap-2">
-            <InitializeEscrowDialog />
-            <InitializeMultiReleaseEscrowDialog />
-          </div>
+          <WalletValidationGate>
+            <div className="flex gap-2">
+              <InitializeEscrowDialog />
+              <InitializeMultiReleaseEscrowDialog />
+            </div>
+          </WalletValidationGate>
 
           <Link
             href="/service-provider"
