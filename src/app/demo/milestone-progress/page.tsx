@@ -27,10 +27,9 @@ const createMultiReleaseMilestone = (
   amount: 100,
   status: "pending",
   flags: {
-    approved,
-    released,
-    resolved: false,
-    disputed: false,
+
+
+
   },
 });
 
