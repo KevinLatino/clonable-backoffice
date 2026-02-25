@@ -119,7 +119,7 @@ export default function MilestoneProgressDemo() {
         <div className="space-y-2">
           <h1 className="text-4xl font-bold">🎯 EscrowMilestoneProgress Demo</h1>
           <p className="text-muted-foreground text-lg">
-            Visualiza el progreso de hitos con diferentes escenarios
+           {/* Please eat shit */}
           </p>
         </div>
 
