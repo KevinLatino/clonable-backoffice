@@ -106,6 +106,21 @@ export function RecentPaymentsView() {
     enabled: !!walletAddress,
   });
 
+  // Show loading during initial wallet hydration to avoid false disconnected state
+  if (isLoading && !walletAddress) {
+    return (
+      <div className="grid gap-6 p-6 md:p-8">
+        <h1 className="text-2xl font-semibold tracking-tight">
+          Recent Payments
+        </h1>
+        <div className="flex flex-col items-center justify-center min-h-[200px] text-center">
+          <Loader2 className="h-6 w-6 md:h-8 md:w-8 animate-spin text-primary mb-3" />
+          <p className="text-sm text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
   if (!walletAddress) {
     return (
       <div className="grid gap-6 p-6 md:p-8">
@@ -223,7 +238,9 @@ export function RecentPaymentsView() {
                 <div>
                   <p className="text-xs text-muted-foreground mb-1">Amount</p>
                   <p className="text-xl font-bold">
-                    {formatCurrency(amount, escrow.trustline?.symbol || "USDC")}
+                    {escrow.trustline?.symbol
+                      ? formatCurrency(amount, escrow.trustline.symbol)
+                      : amount.toFixed(2)}
                   </p>
                 </div>
 
