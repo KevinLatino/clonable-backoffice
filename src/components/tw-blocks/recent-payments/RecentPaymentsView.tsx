@@ -214,7 +214,7 @@ export function RecentPaymentsView() {
         {escrows.map((escrow) => {
           const status = getEscrowStatus(escrow);
           const amount = escrow.type === "single-release"
-            ? escrow.amount
+            ? escrow.amount ?? 0
             : escrow.milestones?.reduce((sum, m) => sum + (m as MultiReleaseMilestone).amount, 0) || 0;
 
           return (
