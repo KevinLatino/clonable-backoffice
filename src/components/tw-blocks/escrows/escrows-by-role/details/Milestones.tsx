@@ -57,7 +57,7 @@ export const Milestones = ({
           <h3 className="font-semibold">Milestone Progress</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="text-sm font-medium">Approved</label>
+              <span className="text-sm font-medium block mb-2">Approved</span>
               <EscrowMilestoneProgressBar
                 escrow={selectedEscrow}
                 mode="approved"
@@ -65,7 +65,7 @@ export const Milestones = ({
               />
             </div>
             <div>
-              <label className="text-sm font-medium">Released</label>
+              <span className="text-sm font-medium block mb-2">Released</span>
               <EscrowMilestoneProgressBar
                 escrow={selectedEscrow}
                 mode="released"

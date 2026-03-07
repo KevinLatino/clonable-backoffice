@@ -1,16 +1,17 @@
 /**
  * Format the currency
  *
- * Accepts `undefined`/`null` values and gracefully falls back to 0. The
- * currency string may be empty if unknown.
+ * Accepts `undefined`/`null` values for both amount and currency, gracefully
+ * falling back to 0 and empty string respectively. This ensures type safety
+ * across all call sites where values may be optional.
  *
- * @param value - The numeric value (or undefined)
- * @param currency - The currency symbol/text
- * @returns The formatted currency
+ * @param value - The numeric value (or undefined/null)
+ * @param currency - The currency symbol/text (or undefined/null)
+ * @returns The formatted currency string
  */
 export const formatCurrency = (
   value: number | undefined | null,
-  currency: string
+  currency?: string | null
 ) => {
   const v = value ?? 0;
   // ensure value is numeric before calling toFixed

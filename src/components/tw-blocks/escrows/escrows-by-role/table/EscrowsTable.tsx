@@ -29,7 +29,6 @@ import { useEscrowDialogs } from "@/components/tw-blocks/providers/EscrowDialogs
 import { useEscrowContext } from "@/components/tw-blocks/providers/EscrowProvider";
 import { useEscrowsByRole } from "../useEscrowsByRole.shared";
 import { formatTimestamp } from "../../../helpers/format.helper";
-import { EscrowMilestoneProgressBar } from "../../indicators/milestone-progress/bar/EscrowMilestoneProgress";
 
 export const EscrowsByRoleTable = () => {
   const {

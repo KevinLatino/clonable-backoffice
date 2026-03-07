@@ -32,6 +32,7 @@ This component is already integrated in the repository. No additional installati
 | `escrow` | `Escrow` | required | The escrow object containing milestone data |
 | `mode` | `'released' \| 'approved'` | required | Progress calculation mode |
 | `showText` | `boolean` | `true` | Show text indicator ("X of Y milestones") |
+| `showHeader` | `boolean` | `true` | Show header with percentage in the top-right |
 | `className` | `string` | `""` | Additional CSS classes for the container |
 
 ## Mode Rules
@@ -133,6 +134,7 @@ interface EscrowMilestoneProgressProps {
   mode: EscrowMilestoneProgressMode;
   className?: string;
   showText?: boolean;
+  showHeader?: boolean;
 }
 
 interface MilestoneProgressResult {

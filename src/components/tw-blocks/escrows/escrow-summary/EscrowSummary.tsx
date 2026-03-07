@@ -8,7 +8,6 @@ import { GetEscrowsFromIndexerResponse as Escrow, MultiReleaseMilestone } from "
 import { formatCurrency } from "@/components/tw-blocks/helpers/format.helper";
 import { useCopy } from "@/components/tw-blocks/helpers/useCopy";
 import { Copy } from "lucide-react";
-import { useEscrowMilestoneProgress } from "@/components/tw-blocks/escrows/indicators/milestone-progress";
 import { EscrowMilestoneProgressBar } from "@/components/tw-blocks/escrows/indicators/milestone-progress/bar/EscrowMilestoneProgress";
 
 interface EscrowSummaryProps {
