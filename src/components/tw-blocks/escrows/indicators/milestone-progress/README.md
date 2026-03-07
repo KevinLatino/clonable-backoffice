@@ -8,14 +8,14 @@ This component calculates and displays the progress of milestone completion base
 
 ## Features
 
-- ✅ **Dynamic Progress Calculation**: Automatically calculates progress based on milestone states
-- ✅ **Two Visualization Styles**: Horizontal bar and circular donut indicators
-- ✅ **Business Rule Validation**: Enforces mode restrictions based on escrow type
-- ✅ **Type Safety**: Full TypeScript support with strict typing
-- ✅ **Error Handling**: Safe fallback rendering for invalid configurations
-- ✅ **Responsive Design**: Works across all screen sizes
-- ✅ **Accessibility**: Semantic HTML with ARIA labels
-- ✅ **Dark Mode Support**: Optimized colors for both light and dark themes
+- **Dynamic Progress Calculation**: Automatically calculates progress based on milestone states
+- **Two Visualization Styles**: Horizontal bar and circular donut indicators
+- **Business Rule Validation**: Enforces mode restrictions based on escrow type
+- **Type Safety**: Full TypeScript support with strict typing
+- **Error Handling**: Safe fallback rendering for invalid configurations
+- **Responsive Design**: Works across all screen sizes
+- **Accessibility**: Semantic HTML with ARIA labels
+- **Dark Mode Support**: Optimized colors for both light and dark themes
 
 ## Installation
 
@@ -38,14 +38,14 @@ This component is already integrated in the repository. No additional installati
 
 ### 'released' Mode
 
-- **Escrow Type**: Multi-release only ✅
+- **Escrow Type**: Multi-release only
 - **Metric**: Counts released milestones (where `flags.released === true`)
 - **Use Case**: Service providers tracking fund releases
 - **Note**: Single-release escrows will show a warning message
 
 ### 'approved' Mode
 
-- **Escrow Type**: Both single-release and multi-release ✅
+- **Escrow Type**: Both single-release and multi-release
 - **Metric**: Counts approved milestones
   - Single-release: where `approved === true`
   - Multi-release: where `flags.approved === true`

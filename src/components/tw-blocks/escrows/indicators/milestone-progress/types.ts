@@ -36,6 +36,12 @@ export interface EscrowMilestoneProgressProps {
    * @default true
    */
   showText?: boolean;
+
+  /**
+   * Optional flag to show header with progress label and percentage
+   * @default true
+   */
+  showHeader?: boolean;
 }
 
 /**
