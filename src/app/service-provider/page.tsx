@@ -3,7 +3,6 @@
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import { WalletButton } from "@/components/tw-blocks/wallet-kit/WalletButtons";
-import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Briefcase } from "lucide-react";
