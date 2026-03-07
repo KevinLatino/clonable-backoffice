@@ -81,19 +81,17 @@ export const EscrowSummary = ({ escrow }: EscrowSummaryProps) => {
               : formatCurrency(escrow.amount ?? 0, escrow.trustline?.symbol || "")}
           </p>
         </div>
-        {/* milestone progress summary */}
-        {isMultiRelease && (
-          <div className="mt-4">
-            <label className="text-sm font-medium text-muted-foreground">
-              Approval Progress
-            </label>
-            <EscrowMilestoneProgressBar
-              escrow={escrow}
-              mode="approved"
-              showText={false}
-            />
-          </div>
-        )}
+        {/* milestone progress summary - support both single and multi-release */}
+        <div className="mt-4">
+          <span className="text-sm font-medium text-muted-foreground block mb-2">
+            Approval Progress
+          </span>
+          <EscrowMilestoneProgressBar
+            escrow={escrow}
+            mode="approved"
+            showText={false}
+          />
+        </div>
       </CardContent>
     </Card>
   );

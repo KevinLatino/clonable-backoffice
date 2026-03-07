@@ -37,7 +37,7 @@ export const RelatedEscrows: React.FC<RelatedEscrowsProps> = ({ selectedEscrow }
   // Note: Currently fetches only escrows where the user is the approver.
   // In future iterations, this could be expanded to fetch all escrows
   // where the user has any role, or passed from the parent context.
-  const { data: escrows, isLoading } = useEscrowsByApprover();
+  const { data: escrows, isLoading, isError } = useEscrowsByApprover();
 
   if (!walletAddress) {
     return (
@@ -52,6 +52,16 @@ export const RelatedEscrows: React.FC<RelatedEscrowsProps> = ({ selectedEscrow }
     return (
       <div className="text-center text-muted-foreground">
         <p>Loading related escrows...</p>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="text-center text-destructive">
+        <Building className="h-12 w-12 mx-auto mb-4 opacity-50" />
+        <p>Error loading related escrows</p>
+        <p className="text-sm mt-2 text-muted-foreground">Please try again later</p>
       </div>
     );
   }
